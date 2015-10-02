@@ -12,6 +12,7 @@ An ER diagram has been developed to store information about generic products and
     3. Delete records in either relation (care should be taken, that all parts are deleted for a product before the product itself can be deleted).
     4. List all available products long with its total cost and the number of parts it contains.
     5. Given a product, list all of its parts and also its total cost.
+* c - A custom error handler should be used    
 ## Technologies Used
 Test Driven Development
 Java
@@ -20,4 +21,7 @@ MySQL Database
 Er Diagrams
 
 ## Extra Resources
-Located in the Extra folder is the MySql connector and the database dump file as per part a of the Tasks.
+Located in the Extra folder is 
+* MySql connector JAR
+* JUnit 4 JAR
+* Database dump file as per part a of the Tasks
