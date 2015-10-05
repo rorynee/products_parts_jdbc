@@ -26,6 +26,10 @@ public class ProductPartsDB {
 	private static PreparedStatement preStmt = null;
 	private static ResultSet rs = null;
 	private static String configFileName = "dbconfig.properties";
+	// Declare an array list of Products 
+	private static ArrayList<Product> myListProducts = null;
+	// Declare an array list of Parts 
+	private static ArrayList<Part> myListParts = null;
 	
 	/**
 	 * This is the constructor for the Product Parts Database class
@@ -59,20 +63,20 @@ public class ProductPartsDB {
 		
 		try
 		{
-			/*  Main Database Settings   */
+			/*  SQL Database Configurations  */
 			// dynamically loads the driver
 //			Class.forName(props.getProperty("jdbcdriver"));
 			// connect to the database using the URL, name & password
-//			con = DriverManager.getConnection(props.getProperty("url"),
-//												props.getProperty("username"),
-//												props.getProperty("password"));
-			/*  Test Database Settings  */
+//			con = DriverManager.getConnection(props.getProperty("url"), props.getProperty("username"), props.getProperty("password"));
+			/*   ---------------   */
+			
+			
+			/*  H2 Database Configurations  */
 			// dynamically loads the driver
 			Class.forName(props.getProperty("jdbcdriverTest"));
 			// connect to the database using the URL, name & password
 			con = DriverManager.getConnection(props.getProperty("urlTest"));
-
-			//stmt = con.createStatement();	// Creates a Statement object which allows us to send commands to the database.
+			/*   ---------------   */
 		}
 		catch(Exception e)
 		{
@@ -107,6 +111,7 @@ public class ProductPartsDB {
 		try
 		{	//counting the number of row associated with 'idnum' using a prepared statment
 			preStmt = con.prepareStatement("select count(*) as Total from "+tableName+" where Prod_ID = ?");
+			
 			preStmt.setInt(1,idnum);
 			// Declare a result set passing the results of the query
 			rs = preStmt.executeQuery();
@@ -127,9 +132,7 @@ public class ProductPartsDB {
 		}
 		finally {
 			// Close the connections
-		    try { if (rs != null) rs.close(); } catch (Exception e) {};
-		    try { if (preStmt != null) preStmt.close(); } catch (Exception e) {};
-		    try { if (con != null) con.close(); } catch (Exception e) {};
+			closePreStmtConnections();
 		}
 	}
 	
@@ -140,11 +143,10 @@ public class ProductPartsDB {
 	 */
 	public ArrayList<Product> printProducts() throws ExceptionHandler{
 		
-		// Declare an array list of Products 
-		ArrayList<Product> myList = new ArrayList<Product>();
-
 		try
 		{
+			// Declare an array list of Products 
+			myListProducts = new ArrayList<Product>();
 			// Creates a Statement object which allows us to send commands to the database.
 			stmt = con.createStatement();
 			// Declare a result set passing the results of the query 
@@ -157,7 +159,7 @@ public class ProductPartsDB {
 				curProduct.setName(rs.getString("Name"));
 				curProduct.setDescription(rs.getString("Description"));
 				// Add the object to the list
-				myList.add(curProduct);
+				myListProducts.add(curProduct);
 			}
 		}
 		catch(SQLException sqle)
@@ -166,13 +168,10 @@ public class ProductPartsDB {
 		}
 		finally {
 			// Close the connections
-		    try { if (rs != null) rs.close(); } catch (Exception e) {};
-		    try { if (stmt != null) stmt.close(); } catch (Exception e) {};
-		    try { if (con != null) con.close(); } catch (Exception e) {};
-			
+			closeStmtConnections();
 		}
 		// Return the data
-		return myList;
+		return myListProducts;
 	}
 	/**
 	 * The method prints all the product details form the product table 
@@ -181,11 +180,10 @@ public class ProductPartsDB {
 	 */
 	public ArrayList<Part> printParts() throws ExceptionHandler{
 		
-		// Declare an array list of Parts 
-		ArrayList<Part> myList = new ArrayList<Part>();
-
 		try
 		{
+			// Declare an array list of Parts 
+			myListParts = new ArrayList<Part>();
 			// Creates a Statement object which allows us to send commands to the database.
 			stmt = con.createStatement();
 			// Declare a result set passing the results of the query 
@@ -200,7 +198,7 @@ public class ProductPartsDB {
 				curPart.setDescription(rs.getString("Description"));
 				curPart.setCost(rs.getDouble("Cost"));
 				// Add the object to the list
-				myList.add(curPart);
+				myListParts.add(curPart);
 			}
 		}
 		catch(SQLException sqle)
@@ -209,13 +207,10 @@ public class ProductPartsDB {
 		}
 		finally {
 			// Close the connections
-		    try { if (rs != null) rs.close(); } catch (Exception e) {};
-		    try { if (stmt != null) stmt.close(); } catch (Exception e) {};
-		    try { if (con != null) con.close(); } catch (Exception e) {};
-			
+			closeStmtConnections();
 		}
 		// Return the data
-		return myList;
+		return myListParts;
 	}
 	/**
 	 * The method insert a new product into the product table
@@ -232,17 +227,175 @@ public class ProductPartsDB {
 			preStmt.setString(1,name);
 			preStmt.setString(2,description);
 			// Declare a result set passing the results of the query
-			int rows = preStmt.executeUpdate();
-			return rows;			
+			return preStmt.executeUpdate();			
 		}
 		catch (SQLException sqle)
 		{
 			throw new ExceptionHandler("Insertion Product Error: Database Error\n"+sqle.getClass()+" - "+sqle.getMessage());
 		}finally {
 			// Close the connections
-		    try { if (rs != null) rs.close(); } catch (Exception e) {};
-		    try { if (preStmt != null) preStmt.close(); } catch (Exception e) {};
-		    try { if (con != null) con.close(); } catch (Exception e) {};
+			closePreStmtConnections();
 		}	
+	}
+	/**
+	 * The method insert a new part into the parts table
+	 * @param prodid - A current product id
+	 * @param name - Name of the the part 
+	 * @param description - Description of the part
+	 * @param cost - Cost of the part
+	 * @return 1 or 0 - 1 database changed, 0 database not changed
+	 * @throws ExceptionHandler
+	 */
+	public int insertPart(int prodid, String name, String description, double cost) throws ExceptionHandler{
+		try
+		{	//Insert the new part into the database
+			preStmt = con.prepareStatement("INSERT INTO Parts VALUES(null,?,?,?,?)");
+			preStmt.setInt(1,prodid);
+			preStmt.setString(2,name);
+			preStmt.setString(3,description);
+			preStmt.setDouble(4,cost);
+			// Declare a result set passing the results of the query
+			return preStmt.executeUpdate();			
+		}
+		catch (SQLException sqle)
+		{
+			throw new ExceptionHandler("Insertion Parts Error: Database Error\n"+sqle.getClass()+" - "+sqle.getMessage());
+		}finally {
+			// Close the connections
+			closePreStmtConnections();
+		}
+	}
+	
+	/**
+	 * The method prints all the product details form the product table that includes
+	 * the number of associated parts and their total costs 
+	 * @return ArrayList<Product> - Returns an array list of Product objects
+	 * @throws ExceptionHandler
+	 */
+	public ArrayList<Product> printTotalProducts() throws ExceptionHandler{
+		
+		String statmentString = "select product.Prod_ID, product.Name, product.Description," +
+				" count(parts.Part_ID) as Num_Of_Parts, sum(parts.cost) as Total_Cost_of_Parts" +
+				" from product join parts where product.Prod_ID = Parts.Prod_ID group by parts.Prod_ID;";
+		
+		try
+		{
+			// Declare an array list of Products 
+			myListProducts = new ArrayList<Product>();
+			// Creates a Statement object which allows us to send commands to the database.
+			stmt = con.createStatement();
+			// Declare a result set passing the results of the query 
+			rs = stmt.executeQuery(statmentString);
+
+			while (rs.next()) {	 // prints out all the rows of the table
+				Product curProduct = new Product();
+				// Add the data to a new Product object
+				curProduct.setProdid(rs.getInt("Prod_ID"));
+				curProduct.setName(rs.getString("Name"));
+				curProduct.setDescription(rs.getString("Description"));
+				curProduct.setNumOfParts(rs.getInt("Num_Of_Parts"));
+				curProduct.setTotalCostOfParts(rs.getInt("Total_Cost_of_Parts"));
+				// Add the object to the list
+				myListProducts.add(curProduct);
+			}
+		}
+		catch(SQLException sqle)
+		{
+			throw new ExceptionHandler("Print Total Products: Database Error\n"+sqle.getClass()+" - "+sqle.getMessage());
+		}
+		finally {
+			// Close the connections
+			closeStmtConnections();
+		}
+		// Return the data
+		return myListProducts;
+	}
+	/**
+	 * This method shows all available parts for a given product id
+	 * @param prodid - Given product id to search for
+	 * @return ArrayList<Part> - List of available parts for the given id
+	 * @throws ExceptionHandler
+	 */
+	public ArrayList<Part> searchProductById(int prodid) throws ExceptionHandler {
+		
+		try
+		{
+			// Declare an array list of Parts 
+			myListParts = new ArrayList<Part>();
+			// Creates a prepared Statement object which allows us to send commands to the database.
+			preStmt = con.prepareStatement("select parts.Prod_ID, parts.Part_ID, parts.name, parts.Description, parts.cost from"+
+					" product join parts where product.Prod_ID = Parts.Prod_ID and Parts.Prod_ID = ?");
+			preStmt.setInt(1,prodid);
+			// Declare a result set passing the results of the query 
+			rs = preStmt.executeQuery();
+
+			while (rs.next()) {	 // prints out all the rows of the table
+				Part curPart = new Part();
+				// Add the data to a new Part object
+				curPart.setPartid(rs.getInt("Part_ID"));
+				curPart.setProdid(rs.getInt("Prod_ID"));
+				curPart.setName(rs.getString("name"));
+				curPart.setDescription(rs.getString("Description"));
+				curPart.setCost(rs.getDouble("Cost"));
+				// Add the object to the list
+				myListParts.add(curPart);
+			}
+		}
+		catch(SQLException sqle)
+		{
+			throw new ExceptionHandler("Search Product By Id Error: Database Error\n"+sqle.getClass()+" - "+sqle.getMessage());
+		}
+		finally {
+			// Close the connections
+			closePreStmtConnections();
+		}
+		// Return the data
+		return myListParts;
+	}
+	
+	/**
+	 * This is a private helper method to close all database connection 
+	 * that use a prepared statement. If they are open they will be closed   
+	 */
+	private void closePreStmtConnections(){
+		// Close the connections
+	    try { if (rs != null) rs.close(); } catch (Exception e) {};
+	    try { if (preStmt != null) preStmt.close(); } catch (Exception e) {};
+	    try { if (con != null) con.close(); } catch (Exception e) {};
+	}
+	
+	/**
+	 * This is a private helper method to close all database connection 
+	 * that use a prepared statement. If they are open they will be closed   
+	 */
+	private void closeStmtConnections(){
+		// Close the connections
+	    try { if (rs != null) rs.close(); } catch (Exception e) {};
+	    try { if (stmt != null) stmt.close(); } catch (Exception e) {};
+	    try { if (con != null) con.close(); } catch (Exception e) {};
+	}
+	/**
+	 * this method sums up the cost of parts for of a chosen product id
+	 * @param prodid - Given product id
+	 * @return double - calculated cost of parts
+	 * @throws ExceptionHandler
+	 */
+	public double sumPartsByProductId(int prodid) throws ExceptionHandler {
+		try
+		{	//Set up the select statement to be used
+			preStmt = con.prepareStatement("select sum(cost) as Total from parts where Prod_ID = ?");
+			preStmt.setInt(1,prodid);
+			// Declare a result set passing the results of the query
+			rs = preStmt.executeQuery();
+			rs.next();
+			return rs.getDouble("Total");			
+		}
+		catch (SQLException sqle)
+		{
+			throw new ExceptionHandler("Sum Parts By Product Id Error: Database Error\n"+sqle.getClass()+" - "+sqle.getMessage());
+		}finally {
+			// Close the connections
+			closePreStmtConnections();
+		}
 	}
 }

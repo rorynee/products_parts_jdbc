@@ -17,13 +17,34 @@ An ER diagram has been developed to store information about generic products and
 ## Technologies Used
 * Test Driven Development
 * Java
+* JUnit 4
 * JDBC
 * MySQL Database
-* Er Diagrams
 * H2 embedded database
 
-## Testing against the H2 DB
+## Testing against the H2 Database
 To test the connection with the database I have chosen to use the H2 embedded database. I have done this as it is better to test against a test database rather than the real database so as to preserve the data integrity. Both a H2 and a SQL database use the same SQL statements structure so this is a good fit.
+
+### Configuring H2 Database
+Please uncomment the following lines of code in the ProductPartsDB class under the 
+init_db() method in the 'H2 Database Configurations' section. Please note by doing this the 
+'SQL Database Configurations' now need to be commented.
+
+```sh
+	Class.forName(props.getProperty("jdbcdriverTest"));
+	con = DriverManager.getConnection(props.getProperty("urlTest"));
+```
+
+### Configuring SQL Database
+Please uncomment the following lines of code in the ProductPartsDB class under the 
+init_db() method in the 'SQL Database Configurations' section. Please note by doing this the 
+'H2 Database Configurations' now need to be commented.
+
+```sh
+	Class.forName(props.getProperty("jdbcdriver"));
+	con = DriverManager.getConnection(props.getProperty("url"), props.getProperty("username"), props.getProperty("password"));
+	
+```
 
 ## Extra Resources
 Located in the Extra folder is 

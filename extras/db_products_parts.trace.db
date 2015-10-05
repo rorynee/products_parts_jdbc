@@ -334,3 +334,679 @@ ALTER TABLE PRODUCT ALTER COLUMN PROD_ID RESTART WITH 0 [90009-189]
 2015-10-04 20:14:27 jdbc[5]: exception
 org.h2.jdbc.JdbcSQLException: Table "WRONGTABLE" not found; SQL statement:
 select count(*) as Total from wrongtable where Prod_ID = ? [42102-189]
+2015-10-05 12:28:44 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "WRONGTABLE" not found; SQL statement:
+select count(*) as Total from wrongtable where Prod_ID = ? [42102-189]
+2015-10-05 12:29:31 jdbc[8]: exception
+org.h2.jdbc.JdbcSQLException: Table "WRONGTABLE" not found; SQL statement:
+select count(*) as Total from wrongtable where Prod_ID = ? [42102-189]
+2015-10-05 12:39:40 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "WRONGTABLE" not found; SQL statement:
+select count(*) as Total from wrongtable where Prod_ID = ? [42102-189]
+2015-10-05 12:45:20 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "WRONGTABLE" not found; SQL statement:
+select count(*) as Total from wrongtable where Prod_ID = ? [42102-189]
+2015-10-05 12:45:45 jdbc[8]: exception
+org.h2.jdbc.JdbcSQLException: Table "WRONGTABLE" not found; SQL statement:
+select count(*) as Total from wrongtable where Prod_ID = ? [42102-189]
+2015-10-05 12:53:19 jdbc[10]: exception
+org.h2.jdbc.JdbcSQLException: Table "WRONGTABLE" not found; SQL statement:
+select count(*) as Total from wrongtable where Prod_ID = ? [42102-189]
+2015-10-05 13:00:58 jdbc[5]: null
+org.h2.message.DbException: The connection was not closed by the application and is garbage collected [90018-189]
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:173)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:118)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:91)
+	at org.h2.Driver.connect(Driver.java:72)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at productParts.ProductPartsDB.init_db(ProductPartsDB.java:73)
+	at productParts.ProductPartsDB.<init>(ProductPartsDB.java:37)
+	at test.ProductPartsDBTest.setUp(ProductPartsDBTest.java:26)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:45)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:42)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:27)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:30)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:263)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:68)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:47)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:231)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:60)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:50)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:222)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:300)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:50)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:467)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:683)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:390)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:197)
+Caused by: org.h2.jdbc.JdbcSQLException: The connection was not closed by the application and is garbage collected [90018-189]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 36 more
+2015-10-05 13:00:58 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "WRONGTABLE" not found; SQL statement:
+select count(*) as Total from wrongtable where Prod_ID = ? [42102-189]
+2015-10-05 13:01:49 jdbc[6]: null
+org.h2.message.DbException: The connection was not closed by the application and is garbage collected [90018-189]
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:173)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:118)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:91)
+	at org.h2.Driver.connect(Driver.java:72)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at productParts.ProductPartsDB.init_db(ProductPartsDB.java:73)
+	at productParts.ProductPartsDB.<init>(ProductPartsDB.java:37)
+	at test.ProductPartsDBTest.setUp(ProductPartsDBTest.java:26)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:45)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:42)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:27)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:30)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:263)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:68)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:47)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:231)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:60)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:50)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:222)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:300)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:50)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:467)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:683)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:390)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:197)
+Caused by: org.h2.jdbc.JdbcSQLException: The connection was not closed by the application and is garbage collected [90018-189]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 36 more
+2015-10-05 13:01:49 jdbc[6]: null
+org.h2.message.DbException: The connection was not closed by the application and is garbage collected [90018-189]
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:173)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:118)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:91)
+	at org.h2.Driver.connect(Driver.java:72)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at productParts.ProductPartsDB.init_db(ProductPartsDB.java:73)
+	at productParts.ProductPartsDB.<init>(ProductPartsDB.java:37)
+	at test.ProductPartsDBTest.setUp(ProductPartsDBTest.java:26)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:45)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:42)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:27)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:30)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:263)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:68)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:47)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:231)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:60)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:50)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:222)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:300)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:50)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:467)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:683)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:390)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:197)
+Caused by: org.h2.jdbc.JdbcSQLException: The connection was not closed by the application and is garbage collected [90018-189]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 36 more
+2015-10-05 13:01:49 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "WRONGTABLE" not found; SQL statement:
+select count(*) as Total from wrongtable where Prod_ID = ? [42102-189]
+2015-10-05 13:07:42 jdbc[7]: exception
+org.h2.jdbc.JdbcSQLException: Table "WRONGTABLE" not found; SQL statement:
+select count(*) as Total from wrongtable where Prod_ID = ? [42102-189]
+2015-10-05 13:12:53 jdbc[10]: exception
+org.h2.jdbc.JdbcSQLException: Table "WRONGTABLE" not found; SQL statement:
+select count(*) as Total from wrongtable where Prod_ID = ? [42102-189]
+2015-10-05 13:13:51 jdbc[10]: exception
+org.h2.jdbc.JdbcSQLException: Table "WRONGTABLE" not found; SQL statement:
+select count(*) as Total from wrongtable where Prod_ID = ? [42102-189]
+2015-10-05 13:17:12 jdbc[5]: null
+org.h2.message.DbException: The connection was not closed by the application and is garbage collected [90018-189]
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:173)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:118)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:91)
+	at org.h2.Driver.connect(Driver.java:72)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at productParts.ProductPartsDB.init_db(ProductPartsDB.java:73)
+	at productParts.ProductPartsDB.<init>(ProductPartsDB.java:37)
+	at test.ProductPartsDBTest.setUp(ProductPartsDBTest.java:26)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:45)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:42)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:27)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:30)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:263)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:68)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:47)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:231)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:60)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:50)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:222)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:300)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:50)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:467)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:683)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:390)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:197)
+Caused by: org.h2.jdbc.JdbcSQLException: The connection was not closed by the application and is garbage collected [90018-189]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 36 more
+2015-10-05 13:17:12 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "WRONGTABLE" not found; SQL statement:
+select count(*) as Total from wrongtable where Prod_ID = ? [42102-189]
+2015-10-05 13:23:17 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "WRONGTABLE" not found; SQL statement:
+select count(*) as Total from wrongtable where Prod_ID = ? [42102-189]
+2015-10-05 13:28:44 jdbc[6]: null
+org.h2.message.DbException: The connection was not closed by the application and is garbage collected [90018-189]
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:173)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:118)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:91)
+	at org.h2.Driver.connect(Driver.java:72)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at productParts.ProductPartsDB.init_db(ProductPartsDB.java:73)
+	at productParts.ProductPartsDB.<init>(ProductPartsDB.java:37)
+	at test.ProductPartsDBTest.setUp(ProductPartsDBTest.java:26)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:45)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:42)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:27)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:30)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:263)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:68)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:47)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:231)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:60)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:50)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:222)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:300)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:50)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:467)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:683)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:390)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:197)
+Caused by: org.h2.jdbc.JdbcSQLException: The connection was not closed by the application and is garbage collected [90018-189]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 36 more
+2015-10-05 13:28:44 jdbc[6]: null
+org.h2.message.DbException: The connection was not closed by the application and is garbage collected [90018-189]
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:173)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:118)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:91)
+	at org.h2.Driver.connect(Driver.java:72)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at productParts.ProductPartsDB.init_db(ProductPartsDB.java:73)
+	at productParts.ProductPartsDB.<init>(ProductPartsDB.java:37)
+	at test.ProductPartsDBTest.setUp(ProductPartsDBTest.java:26)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:45)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:42)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:27)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:30)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:263)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:68)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:47)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:231)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:60)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:50)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:222)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:300)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:50)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:467)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:683)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:390)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:197)
+Caused by: org.h2.jdbc.JdbcSQLException: The connection was not closed by the application and is garbage collected [90018-189]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 36 more
+2015-10-05 13:28:44 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "WRONGTABLE" not found; SQL statement:
+select count(*) as Total from wrongtable where Prod_ID = ? [42102-189]
+2015-10-05 14:50:02 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "WRONGTABLE" not found; SQL statement:
+select count(*) as Total from wrongtable where Prod_ID = ? [42102-189]
+2015-10-05 14:54:50 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: The object is already closed [90007-189]
+2015-10-05 14:54:50 jdbc[10]: exception
+org.h2.jdbc.JdbcSQLException: Table "WRONGTABLE" not found; SQL statement:
+select count(*) as Total from wrongtable where Prod_ID = ? [42102-189]
+2015-10-05 14:56:15 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: The object is already closed [90007-189]
+2015-10-05 14:56:15 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "WRONGTABLE" not found; SQL statement:
+select count(*) as Total from wrongtable where Prod_ID = ? [42102-189]
+2015-10-05 15:00:10 jdbc[10]: exception
+org.h2.jdbc.JdbcSQLException: The object is already closed [90007-189]
+2015-10-05 15:00:11 jdbc[11]: exception
+org.h2.jdbc.JdbcSQLException: Table "WRONGTABLE" not found; SQL statement:
+select count(*) as Total from wrongtable where Prod_ID = ? [42102-189]
+2015-10-05 15:01:09 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: The object is already closed [90007-189]
+2015-10-05 15:01:09 jdbc[12]: exception
+org.h2.jdbc.JdbcSQLException: Table "WRONGTABLE" not found; SQL statement:
+select count(*) as Total from wrongtable where Prod_ID = ? [42102-189]
+2015-10-05 15:03:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "WRONGTABLE" not found; SQL statement:
+select count(*) as Total from wrongtable where Prod_ID = ? [42102-189]
+2015-10-05 15:12:18 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "WRONGTABLE" not found; SQL statement:
+select count(*) as Total from wrongtable where Prod_ID = ? [42102-189]
+2015-10-05 15:24:51 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "WRONGTABLE" not found; SQL statement:
+select count(*) as Total from wrongtable where Prod_ID = ? [42102-189]
+2015-10-05 15:30:48 jdbc[7]: exception
+org.h2.jdbc.JdbcSQLException: Table "WRONGTABLE" not found; SQL statement:
+select count(*) as Total from wrongtable where Prod_ID = ? [42102-189]
+2015-10-05 15:35:05 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "WRONGTABLE" not found; SQL statement:
+select count(*) as Total from wrongtable where Prod_ID = ? [42102-189]
+2015-10-05 15:37:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "WRONGTABLE" not found; SQL statement:
+select count(*) as Total from wrongtable where Prod_ID = ? [42102-189]
+2015-10-05 15:40:15 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "WRONGTABLE" not found; SQL statement:
+select count(*) as Total from wrongtable where Prod_ID = ? [42102-189]
+2015-10-05 15:46:23 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Table "WRONGTABLE" not found; SQL statement:
+select count(*) as Total from wrongtable where Prod_ID = ? [42102-189]
+2015-10-05 15:48:10 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "WRONGTABLE" not found; SQL statement:
+select count(*) as Total from wrongtable where Prod_ID = ? [42102-189]
+2015-10-05 15:48:28 jdbc[7]: exception
+org.h2.jdbc.JdbcSQLException: Table "WRONGTABLE" not found; SQL statement:
+select count(*) as Total from wrongtable where Prod_ID = ? [42102-189]
+2015-10-05 15:48:40 jdbc[6]: null
+org.h2.message.DbException: The connection was not closed by the application and is garbage collected [90018-189]
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:173)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:118)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:91)
+	at org.h2.Driver.connect(Driver.java:72)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at productParts.ProductPartsDB.init_db(ProductPartsDB.java:73)
+	at productParts.ProductPartsDB.<init>(ProductPartsDB.java:37)
+	at test.ProductPartsDBTest.setUp(ProductPartsDBTest.java:26)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:45)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:42)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:27)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:30)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:263)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:68)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:47)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:231)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:60)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:50)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:222)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:300)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:50)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:467)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:683)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:390)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:197)
+Caused by: org.h2.jdbc.JdbcSQLException: The connection was not closed by the application and is garbage collected [90018-189]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 36 more
+2015-10-05 15:48:40 jdbc[6]: null
+org.h2.message.DbException: The connection was not closed by the application and is garbage collected [90018-189]
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:173)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:118)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:91)
+	at org.h2.Driver.connect(Driver.java:72)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at productParts.ProductPartsDB.init_db(ProductPartsDB.java:73)
+	at productParts.ProductPartsDB.<init>(ProductPartsDB.java:37)
+	at test.ProductPartsDBTest.setUp(ProductPartsDBTest.java:26)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:45)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:42)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:27)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:30)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:263)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:68)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:47)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:231)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:60)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:50)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:222)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:300)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:50)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:467)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:683)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:390)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:197)
+Caused by: org.h2.jdbc.JdbcSQLException: The connection was not closed by the application and is garbage collected [90018-189]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 36 more
+2015-10-05 15:48:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "WRONGTABLE" not found; SQL statement:
+select count(*) as Total from wrongtable where Prod_ID = ? [42102-189]
+2015-10-05 15:49:00 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "WRONGTABLE" not found; SQL statement:
+select count(*) as Total from wrongtable where Prod_ID = ? [42102-189]
+2015-10-05 15:57:28 jdbc[10]: exception
+org.h2.jdbc.JdbcSQLException: Table "WRONGTABLE" not found; SQL statement:
+select count(*) as Total from wrongtable where Prod_ID = ? [42102-189]
+2015-10-05 16:00:45 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "WRONGTABLE" not found; SQL statement:
+select count(*) as Total from wrongtable where Prod_ID = ? [42102-189]
+2015-10-05 16:12:52 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "WRONGTABLE" not found; SQL statement:
+select count(*) as Total from wrongtable where Prod_ID = ? [42102-189]
+2015-10-05 16:13:59 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "WRONGTABLE" not found; SQL statement:
+select count(*) as Total from wrongtable where Prod_ID = ? [42102-189]
+2015-10-05 16:18:05 jdbc[5]: null
+org.h2.message.DbException: The connection was not closed by the application and is garbage collected [90018-189]
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:173)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:118)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:91)
+	at org.h2.Driver.connect(Driver.java:72)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at productParts.ProductPartsDB.init_db(ProductPartsDB.java:77)
+	at productParts.ProductPartsDB.<init>(ProductPartsDB.java:41)
+	at test.ProductPartsDBTest.setUp(ProductPartsDBTest.java:26)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:45)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:42)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:27)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:30)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:263)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:68)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:47)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:231)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:60)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:50)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:222)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:300)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:50)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:467)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:683)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:390)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:197)
+Caused by: org.h2.jdbc.JdbcSQLException: The connection was not closed by the application and is garbage collected [90018-189]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 36 more
+2015-10-05 16:18:05 jdbc[10]: exception
+org.h2.jdbc.JdbcSQLException: Table "WRONGTABLE" not found; SQL statement:
+select count(*) as Total from wrongtable where Prod_ID = ? [42102-189]
+2015-10-05 16:21:43 jdbc[10]: exception
+org.h2.jdbc.JdbcSQLException: Table "WRONGTABLE" not found; SQL statement:
+select count(*) as Total from wrongtable where Prod_ID = ? [42102-189]
+2015-10-05 16:28:40 jdbc[6]: null
+org.h2.message.DbException: The connection was not closed by the application and is garbage collected [90018-189]
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:173)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:118)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:91)
+	at org.h2.Driver.connect(Driver.java:72)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at productParts.ProductPartsDB.init_db(ProductPartsDB.java:78)
+	at productParts.ProductPartsDB.<init>(ProductPartsDB.java:41)
+	at test.ProductPartsDBTest.setUp(ProductPartsDBTest.java:26)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:45)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:42)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:27)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:30)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:263)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:68)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:47)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:231)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:60)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:50)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:222)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:300)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:50)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:467)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:683)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:390)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:197)
+Caused by: org.h2.jdbc.JdbcSQLException: The connection was not closed by the application and is garbage collected [90018-189]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 36 more
+2015-10-05 16:28:40 jdbc[6]: null
+org.h2.message.DbException: The connection was not closed by the application and is garbage collected [90018-189]
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:173)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:118)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:91)
+	at org.h2.Driver.connect(Driver.java:72)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at productParts.ProductPartsDB.init_db(ProductPartsDB.java:78)
+	at productParts.ProductPartsDB.<init>(ProductPartsDB.java:41)
+	at test.ProductPartsDBTest.setUp(ProductPartsDBTest.java:26)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:45)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:42)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:27)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:30)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:263)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:68)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:47)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:231)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:60)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:50)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:222)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:300)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:50)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:467)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:683)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:390)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:197)
+Caused by: org.h2.jdbc.JdbcSQLException: The connection was not closed by the application and is garbage collected [90018-189]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 36 more
+2015-10-05 16:28:40 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "WRONGTABLE" not found; SQL statement:
+select count(*) as Total from wrongtable where Prod_ID = ? [42102-189]
+2015-10-05 16:33:06 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "WRONGTABLE" not found; SQL statement:
+select count(*) as Total from wrongtable where Prod_ID = ? [42102-189]
+2015-10-05 16:33:06 jdbc[11]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT SUM(COST) AS 'Total'[*] FROM PARTS WHERE PROD_ID = ? "; expected "identifier"; SQL statement:
+select sum(cost) as 'Total' from parts where Prod_ID = ? [42001-189]
+2015-10-05 16:34:14 jdbc[5]: null
+org.h2.message.DbException: The connection was not closed by the application and is garbage collected [90018-189]
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:173)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:118)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:91)
+	at org.h2.Driver.connect(Driver.java:72)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at productParts.ProductPartsDB.init_db(ProductPartsDB.java:78)
+	at productParts.ProductPartsDB.<init>(ProductPartsDB.java:41)
+	at test.ProductPartsDBTest.setUp(ProductPartsDBTest.java:26)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:45)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:42)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:27)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:30)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:263)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:68)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:47)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:231)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:60)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:50)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:222)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:300)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:50)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:467)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:683)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:390)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:197)
+Caused by: org.h2.jdbc.JdbcSQLException: The connection was not closed by the application and is garbage collected [90018-189]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 36 more
+2015-10-05 16:34:14 jdbc[16]: exception
+org.h2.jdbc.JdbcSQLException: Table "WRONGTABLE" not found; SQL statement:
+select count(*) as Total from wrongtable where Prod_ID = ? [42102-189]
+2015-10-05 16:35:21 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "WRONGTABLE" not found; SQL statement:
+select count(*) as Total from wrongtable where Prod_ID = ? [42102-189]
+2015-10-05 16:35:54 jdbc[5]: null
+org.h2.message.DbException: The connection was not closed by the application and is garbage collected [90018-189]
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:173)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:118)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:91)
+	at org.h2.Driver.connect(Driver.java:72)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at productParts.ProductPartsDB.init_db(ProductPartsDB.java:78)
+	at productParts.ProductPartsDB.<init>(ProductPartsDB.java:41)
+	at test.ProductPartsDBTest.setUp(ProductPartsDBTest.java:26)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:45)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:42)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:27)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:30)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:263)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:68)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:47)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:231)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:60)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:50)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:222)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:300)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:50)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:467)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:683)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:390)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:197)
+Caused by: org.h2.jdbc.JdbcSQLException: The connection was not closed by the application and is garbage collected [90018-189]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 36 more
+2015-10-05 16:35:54 jdbc[7]: exception
+org.h2.jdbc.JdbcSQLException: Table "WRONGTABLE" not found; SQL statement:
+select count(*) as Total from wrongtable where Prod_ID = ? [42102-189]
+2015-10-05 16:37:14 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "WRONGTABLE" not found; SQL statement:
+select count(*) as Total from wrongtable where Prod_ID = ? [42102-189]
+2015-10-05 16:40:56 jdbc[12]: exception
+org.h2.jdbc.JdbcSQLException: Table "WRONGTABLE" not found; SQL statement:
+select count(*) as Total from wrongtable where Prod_ID = ? [42102-189]

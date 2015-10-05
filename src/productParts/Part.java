@@ -112,6 +112,16 @@ public class Part {
 	public void setCost(double cost) {
 		this.cost = cost;
 	}
+	/* Return a string version of a Parts object 
+	 * (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Part [partid=" + partid + ", prodid=" + prodid + ", name="
+				+ name + ", description=" + description + ", cost=" + cost
+				+ "]";
+	}
 	
 	
 
