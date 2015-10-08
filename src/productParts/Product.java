@@ -10,8 +10,6 @@ public class Product {
 	private int prodid;
 	private String name;
 	private String description;
-	private int numOfParts;
-	private double totalCostOfParts;
 	
 	/**
 	 * Default constructor
@@ -31,8 +29,6 @@ public class Product {
 		this.prodid = prodid;
 		this.name = name;
 		this.description = description;
-		this.numOfParts = 0;
-		this.totalCostOfParts = 0;
 	}
 
 	/**
@@ -91,50 +87,6 @@ public class Product {
 	public String toString() {
 		return "Product [prodid=" + prodid + ", name=" + name
 				+ ", description=" + description + "]";
-	}
-
-	/**
-	 * Get the number of parts associated with the current object
-	 * @return the numOfParts - count of associated parts 
-	 */
-	public int getNumOfParts() {
-		return numOfParts;
-	}
-
-	/**
-	 * Set the number of parts associated with the current object
-	 * @param numOfParts - the number of parts to set for current object
-	 */
-	public void setNumOfParts(int numOfParts) {
-		this.numOfParts = numOfParts;
-	}
-
-	/**
-	 * Get the total cost of parts associated with the current object
-	 * @return the totalCostOfParts - sum of total cost of parts 
-	 */
-	public double getTotalCostOfParts() {
-		return totalCostOfParts;
-	}
-
-	/**
-	 * Set the total cost of parts associated with the current object
-	 * @param totalCostOfParts - sum of total cost of parts to set for current object
-	 */
-	public void setTotalCostOfParts(double totalCostOfParts) {
-		this.totalCostOfParts = totalCostOfParts;
-	}
-	/**
-	 * This method show a string representation of a product including the number of parts
-	 * and the total cost of the parts.
-	 * @return String - Total Products 
-	 */
-	public String totalProductToString() {
-		return "Product [prodid=" + prodid + ", name=" + name
-				+ ", description=" + description + ", numOfParts="+ numOfParts +"" +
-						", totalCostOfParts="+ totalCostOfParts +"]";
-	}
-	
-	
+	}	
 	
 }

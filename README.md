@@ -46,6 +46,9 @@ init_db() method in the 'SQL Database Configurations' section. Please note by do
 	
 ```
 
+## Run Tests
+To run the tests please execute the TestRunner class in the test folder.
+
 ## Extra Resources
 Located in the Extra folder is 
 * MySql connector JAR

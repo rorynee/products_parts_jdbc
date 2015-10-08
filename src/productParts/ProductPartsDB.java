@@ -288,15 +288,15 @@ public class ProductPartsDB {
 			rs = stmt.executeQuery(statmentString);
 
 			while (rs.next()) {	 // prints out all the rows of the table
-				Product curProduct = new Product();
 				// Add the data to a new Product object
-				curProduct.setProdid(rs.getInt("Prod_ID"));
-				curProduct.setName(rs.getString("Name"));
-				curProduct.setDescription(rs.getString("Description"));
-				curProduct.setNumOfParts(rs.getInt("Num_Of_Parts"));
-				curProduct.setTotalCostOfParts(rs.getInt("Total_Cost_of_Parts"));
-				// Add the object to the list
-				myListProducts.add(curProduct);
+				TotalProducts curTotProducts = new TotalProducts(
+					rs.getInt("Prod_ID"),
+					rs.getString("Name"),
+					rs.getString("Description"),
+					rs.getInt("Num_Of_Parts"),
+					rs.getDouble("Total_Cost_of_Parts")
+				);
+				myListProducts.add(curTotProducts);
 			}
 		}
 		catch(SQLException sqle)
@@ -354,10 +354,11 @@ public class ProductPartsDB {
 	}
 	
 	/**
-	 * This is a private helper method to close all database connection 
-	 * that use a prepared statement. If they are open they will be closed   
+	 * This is a public helper method to close all database connection 
+	 * that use a prepared statement. If they are open they will be closed.
+	 * This is also used by a user class to close the 'checkIsTableEmpty()' method.   
 	 */
-	private void closePreStmtConnections(){
+	public void closePreStmtConnections(){
 		// Close the connections
 	    try { if (rs != null) rs.close(); } catch (Exception e) {};
 	    try { if (preStmt != null) preStmt.close(); } catch (Exception e) {};
@@ -396,6 +397,106 @@ public class ProductPartsDB {
 		}finally {
 			// Close the connections
 			closePreStmtConnections();
+		}
+	}
+	/**
+	 * This function deletes a part form the parts table by passing it a valid part id number
+	 * @param partid - A valid part id number
+	 * @return 1 or 0 - 1 database changed, 0 database not changed
+	 * @throws ExceptionHandler
+	 */
+	public int deletePartById(int partid) throws ExceptionHandler{
+		try
+		{	//Set up the select statement to be used
+			preStmt = con.prepareStatement("DELETE FROM Parts WHERE Part_ID= ?");
+			preStmt.setInt(1,partid);
+			// passing the results of the query
+			int success = preStmt.executeUpdate();
+			
+			if(checkIsTableEmpty("PARTS")){
+				preStmt = con.prepareStatement("ALTER TABLE Parts ALTER COLUMN part_id RESTART WITH 1");
+		    	preStmt.executeUpdate();
+			}
+			return success;			
+		}
+		catch (SQLException sqle)
+		{
+			throw new ExceptionHandler("Delete Part By Id Error: Database Error\n"+sqle.getClass()+" - "+sqle.getMessage());
+		}finally {
+			// Close the connections
+			closePreStmtConnections();
+		}
+	}
+	/**
+	 * This function deletes a product form the product table by passing it a valid product id number.
+	 * Also it will delete any associated parts of the chosen product.
+	 * @param prodid - A valid product id number
+	 * @return 1 or 0 - 1 database changed, 0 database not changed
+	 * @throws ExceptionHandler
+	 */
+	public int deleteProductById(int prodid) throws ExceptionHandler {
+		try
+		{	//Set up the select statement to be used
+			preStmt = con.prepareStatement("DELETE FROM Parts WHERE Prod_ID= ?");
+			preStmt.setInt(1,prodid);
+			// passing the results of the query
+			// The result here can either by 0 or 1 if there is parts available
+			// Not all products have parts so no real need to check it.
+			// If there was an error then the catch statement would catch the error
+			preStmt.executeUpdate();
+			
+			if(checkIsTableEmpty("PARTS")){
+				preStmt = con.prepareStatement("ALTER TABLE Parts ALTER COLUMN part_id RESTART WITH 1");
+		    	preStmt.executeUpdate();
+			}
+			
+			//Set up the select statement to be used
+			preStmt = con.prepareStatement("DELETE FROM Product WHERE Prod_ID= ?");
+			preStmt.setInt(1,prodid);
+			// Deletion result will be passed back
+			// passing the results of the query
+			int success = preStmt.executeUpdate();
+		
+			if(checkIsTableEmpty("PRODUCT")){
+				preStmt = con.prepareStatement("ALTER TABLE Product ALTER COLUMN prod_id RESTART WITH 1");
+		    	preStmt.executeUpdate();
+			}
+			return success;
+		}
+		catch (SQLException sqle)
+		{
+			throw new ExceptionHandler("Delete Part By Id Error: Database Error\n"+sqle.getClass()+" - "+sqle.getMessage());
+		}finally {
+			// Close the connections
+			closePreStmtConnections();
+		}
+	}
+    /**
+	 * This method checks if the database is empty or not. This connection to the database should be
+	 * closed using the "closePreStmtConnections()" method implicitly. 
+	 * @param tableName - The chosen table to check
+	 * @return - True (empty) false (It is not empty)
+	 * @throws ExceptionHandler
+	 */
+	public boolean checkIsTableEmpty(String tableName) throws ExceptionHandler {
+		// This connection is not closed as it is used by the ProductPartsDB class
+		// and a user can also call it. There for the 'closePreStmtConnections()' method
+		// should be called implicitly by the user class and not by the ProductPartsDB class
+		// As it closes itself automatically
+		try
+		{	//Set up the select statement to be used
+			preStmt = con.prepareStatement("select count(*) as Total from "+tableName);
+			rs = preStmt.executeQuery();
+			rs.next();
+		    if(rs.getInt("Total") == 0){
+		    	return true;
+		    }else{
+		    	return false;
+		    }
+		}
+		catch (SQLException sqle)
+		{
+			throw new ExceptionHandler("Check Is Table Empty Error: Database Error\n"+sqle.getClass()+" - "+sqle.getMessage());
 		}
 	}
 }
