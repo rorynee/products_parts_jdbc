@@ -2,10 +2,16 @@ package test;
 
 import static org.junit.Assert.*;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.nio.channels.FileChannel;
+import java.nio.channels.FileLock;
+import java.util.Properties;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
 import productParts.ExceptionHandler;
 import productParts.ProductPartsDB;
 
@@ -51,6 +57,75 @@ public class TestNoDataSetUP {
 		assertEquals(true, testObject.dbIsConnected());
 	}
 	
+	// Test No: testNotConnected
+	// Objective: Test that a productPartsDB connects to the database is invalid
+	// Inputs: call the testObject after it has been set to null
+	// Expected Output: testObject is not connected
+	public void testNotConnection() throws ExceptionHandler{
+		
+		testObject = null;
+		assertEquals(false, testObject.dbIsConnected());
+	}
+
+	// Test No: testFileNameMethodFNF
+	// Objective: Test that a file not found exception is thrown
+	// Inputs: filename = FileNotThere
+	// Expected Output: Exception thrown. An error of type 'DBConfig Error' expected
+	@Test(expected= ExceptionHandler.class)
+	public void testFileNameMethodFNF() throws ExceptionHandler{
+
+		try {
+			assertEquals(Properties.class, ProductPartsDB.loadFileProperties("FileNotThere"));
+			fail("Exception expected .....");
+		} catch (ExceptionHandler e) {
+			// Assert that the message form the error is the right error message
+			assertEquals("DBConfig Error", new String(e.getMessage().substring(0, 14)));
+			// throw the error to be caught by the @Test notation
+			throw e;
+		} 
+
+	}
+	
+	// Test No: testFileNameMethodIOE
+	// Objective: Test that a IO exception is thrown
+	// Inputs: filename = FileNotThere
+	// Expected Output: Exception thrown. An error of type 'DBConfig Error' expected
+	@Test(expected= ExceptionHandler.class)
+	public void testFileNameMethodIOE() throws ExceptionHandler{
+		// Create the lock
+		FileLock lock = null;
+		try {
+			// Acquire the file 
+			File file = new File("dbconfigTest.properties");
+	       
+	        try {
+	        	// Acquire an exclusive lock on the file
+	        	// get a file channel
+				FileChannel fileChannel = new RandomAccessFile(file, "rw").getChannel();
+				// get an exclusive lock on this channel
+				lock = fileChannel.lock();
+				// Should fail because it cant be accessed
+				assertEquals(Properties.class, ProductPartsDB.loadFileProperties("dbconfigTest.properties"));
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			fail("Exception expected .....");
+		} catch (ExceptionHandler e) {
+			// Assert that the message form the error is the right error message
+			assertEquals("DBConfig Error", new String(e.getMessage().substring(0, 14)));
+			try {
+				// Release the lock
+				lock.release();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			// throw the error to be caught by the @Test notation
+			throw e;
+		} 
+	}
+	
 	// Test No: testNotValidIDPos
 	// Objective: Test that a number is not a valid database product id
 	// Inputs: Table name: "product" Id number: 8888888
@@ -79,7 +154,7 @@ public class TestNoDataSetUP {
 	public void testWrongTableName() throws ExceptionHandler{
 
 		try {
-			assertEquals(false, testObject.validId("wrongtable",8888888));
+			assertEquals(true, testObject.validId("wrongtable",8888888));
 			fail("Exception expected .....");
 		} catch (ExceptionHandler e) {
 			// Assert that the message form the error is the right error message
@@ -139,7 +214,7 @@ public class TestNoDataSetUP {
 	// Test No: testEmptyPartsTableInvalidName
 	// Objective: Test that the method gives an error if given an invalid name
 	// Inputs: table name - WrongNameOfTable
-	// Expected Output: true
+	// Expected Output: Exception thrown. An error of type 'Check Is Table Empty Error' expected
 	@Test(expected= ExceptionHandler.class)
 	public void testEmptyPartsTableInvalidName() throws ExceptionHandler{
 		

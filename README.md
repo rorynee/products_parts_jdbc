@@ -2,8 +2,8 @@
 ## Description
 Using Test Driven Development (TDD), develop a user interface for the following ER diagram and application description.
 An ER diagram has been developed to store information about generic products and all the parts that it is made up of. This system can deal with any product that is made up of several parts; therefore you can model any enterprise you want.
-## ![alt text][logo]
-[logo]: https://raw.github.com/rorynee/products_parts_jdbc/master/extras/erdiagram.bmp "Er Diagram"
+## ![alt text][erdiag]
+[erdiag]: https://raw.github.com/rorynee/products_parts_jdbc/master/extras/erdiagram.bmp "Er Diagram"
 ## Tasks
 * a - You must first create the relational database that reflects the above ER diagram.
 * b - Create an interface using Java that can do the following:
@@ -13,6 +13,7 @@ An ER diagram has been developed to store information about generic products and
     4. List all available products along with its total cost and the number of parts it contains.
     5. Given a product, list all of its parts and also its total cost.
 * c - A custom error handler should be used
+* d - User a code coverage tool
 
 ## Technologies Used
 * Test Driven Development
@@ -26,20 +27,28 @@ An ER diagram has been developed to store information about generic products and
 To test the connection with the database I have chosen to use the H2 embedded database. I have done this as it is better to test against a test database rather than the real database so as to preserve the data integrity. Both a H2 and a SQL database use the same SQL statements structure so this is a good fit.
 
 ### Configuring H2 Database
-Please uncomment the following lines of code in the ProductPartsDB class under the 
+Please uncomment the following lines of code in the ProductPartsDB class under variable declaration and in the 
 init_db() method in the 'H2 Database Configurations' section. Please note by doing this the 
 'SQL Database Configurations' now need to be commented.
 
+```sh
+	// Declaration of file to be used 
+	private static String configFileName = "dbconfigTest.properties";
+```
 ```sh
 	Class.forName(props.getProperty("jdbcdriverTest"));
 	con = DriverManager.getConnection(props.getProperty("urlTest"));
 ```
 
 ### Configuring SQL Database
-Please uncomment the following lines of code in the ProductPartsDB class under the 
+Please uncomment the following lines of code in the ProductPartsDB class under variable declaration and in the 
 init_db() method in the 'SQL Database Configurations' section. Please note by doing this the 
 'H2 Database Configurations' now need to be commented.
 
+```sh
+	// Declaration of file to be used
+	private static String configFileName = "dbconfig.properties";
+```
 ```sh
 	Class.forName(props.getProperty("jdbcdriver"));
 	con = DriverManager.getConnection(props.getProperty("url"), props.getProperty("username"), props.getProperty("password"));
@@ -48,6 +57,12 @@ init_db() method in the 'SQL Database Configurations' section. Please note by do
 
 ## Run Tests
 To run the tests please execute the TestRunner class in the test folder.
+
+## Test Results including code coverage data
+The diagram below shows the test results on the left and the code coverage results on the right
+  
+![alt text][test]
+[test]: https://raw.github.com/rorynee/products_parts_jdbc/master/extras/testCodeCoverage.png "Test Results"
 
 ## Extra Resources
 Located in the Extra folder is 

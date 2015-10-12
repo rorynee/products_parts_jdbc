@@ -23,6 +23,7 @@ public class TestValidatingData {
 	public static void beforeAllTestsRun() throws Exception{
 			testObject = new ProductPartsDB();
 			testObject.insertProduct("ASUS","X501U-XX039H 15.6 Laptop - White");
+			// previous object closed, Need to instantiate a new object
 			testObject = new ProductPartsDB();
 			testObject.insertPart(1,"HardDrive","500GB Internal HardDrive",199.99);
 			testObject = new ProductPartsDB();
@@ -65,6 +66,7 @@ public class TestValidatingData {
 	public void testValidIdProd() throws ExceptionHandler{
 
 		assertEquals(true, testObject.validId("product",1));
+		
 	}
 	
 	// Test No: testReturnedDataProd
@@ -133,7 +135,13 @@ public class TestValidatingData {
 	public void testTotalCostOfProdParts() throws ExceptionHandler{
 	
 		TotalProducts actualTotProduct = new TotalProducts(1,"ASUS","X501U-XX039H 15.6 Laptop - White",2,499.98);
-		assertEquals(actualTotProduct.toString(),testObject.printTotalProducts().get(0).toString());	
+		assertEquals(actualTotProduct.toString(),testObject.printTotalProducts().get(0).toString());
+		testObject = new ProductPartsDB();
+		assertEquals(actualTotProduct.getTotalCostOfParts(),testObject.printTotalProducts().get(0).getTotalCostOfParts(),0.01);
+		testObject = new ProductPartsDB();
+		assertEquals(actualTotProduct.getNumOfParts(),testObject.printTotalProducts().get(0).getNumOfParts());
+		
+		
 	} 
 	
 	// Test No: testSearchByIdProd
@@ -142,6 +150,7 @@ public class TestValidatingData {
 	// Expected Output: List of parts associated to a product id of 1 where the following part
 	// is first in the list
 	// Part [partid= 1, prodid= 1, name= "HardDrive", description= "500GB Internal HardDrive", cost= 199.99]
+	// and that the product id's match.
 	@Test
 	public void testSearchByIdProd() throws ExceptionHandler{
 
@@ -149,6 +158,10 @@ public class TestValidatingData {
 		Part actualPart = new Part(1,1,"HardDrive","500GB Internal HardDrive",199.99);
 
 		assertEquals(actualPart.toString(),testObject.searchProductById(1).get(0).toString());
+		testObject = new ProductPartsDB();
+		assertEquals(actualPart.getProdid(),testObject.searchProductById(1).get(0).getProdid());
+		
+		
 	}
 
 	// Test No: testInvalidSearchByIdProd

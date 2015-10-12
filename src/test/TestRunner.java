@@ -12,8 +12,9 @@ import org.junit.runners.Suite.SuiteClasses;
 				TestNoDataSetUP.class,
 				TestInsertProduct.class,
 				TestInsertPart.class,
-				TestDeletions.class,
-				TestValidatingData.class
+				TestDeleteUpdate.class,
+				TestValidatingData.class,
+				TestExceptionsDBError.class
 			 })
 
 public class TestRunner {
@@ -21,11 +22,12 @@ public class TestRunner {
 }
 
 /********************************************************************
- * update needed to be finished
- * codecoverage  
- * handy SQL statements
+ * 
+ * handy SQL statements for resetting the database is test failure
  * - ALTER TABLE Product ALTER COLUMN prod_id RESTART WITH 1
  * - delete from product where prod_id = 1
+ * - delete from product
  * - ALTER TABLE Parts ALTER COLUMN part_id RESTART WITH 1
  * - delete from parts where part_id = 1
+ * - delete from parts
  */

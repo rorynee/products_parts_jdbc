@@ -25,9 +25,17 @@ public class ProductPartsDB {
 	private static Statement stmt = null;
 	private static PreparedStatement preStmt = null;
 	private static ResultSet rs = null;
-	private static String configFileName = "dbconfig.properties";
+	
+	/** Choose between Production or test file names **/
+	
+	//private static String configFileName = "dbconfig.properties";
+	private static String configFileName = "dbconfigTest.properties";
+	
+	/****/
+	
 	// Declare an array list of Products 
 	private static ArrayList<Product> myListProducts = null;
+	private static ArrayList<TotalProducts> myListTotalProducts = null;
 	// Declare an array list of Parts 
 	private static ArrayList<Part> myListParts = null;
 	
@@ -36,12 +44,8 @@ public class ProductPartsDB {
 	 * @throws ExceptionHandler
 	 */
 	public ProductPartsDB() throws ExceptionHandler{
-		try {
 			// Initialization of the database
 			init_db();
-		} catch (ExceptionHandler e) {
-			throw new ExceptionHandler("Initialization Error: Failed to create connection\n"+e.getMessage());
-		}
 	}
 	/**
 	 * The following method connects this java program to our mysql database.
@@ -51,19 +55,11 @@ public class ProductPartsDB {
 	private static void init_db() throws ExceptionHandler
 	{
 		// get database configuration details form the properties file
-		Properties props = new Properties();
-		try {
-			// Load the data into the file input stream
-			props.load(new FileInputStream(configFileName));
-		} catch (FileNotFoundException e) {
-			throw new ExceptionHandler("DBConfig Error: File not found\n"+e.getClass()+" - "+e.getMessage());
-		} catch (IOException e) {
-			throw new ExceptionHandler("DBConfig Error: IO Exception\n"+e.getClass()+" - "+e.getMessage());
-		}
+		Properties props = loadFileProperties(configFileName);
 		
 		try
 		{
-			/*  SQL Database Configurations  */
+			/*  SQL Database Configurations - change configFileName to production filename */
 			// dynamically loads the driver
 //			Class.forName(props.getProperty("jdbcdriver"));
 			// connect to the database using the URL, name & password
@@ -84,6 +80,22 @@ public class ProductPartsDB {
 		}
 	}
 	/**
+	 * @param props
+	 * @throws ExceptionHandler
+	 */
+	public static Properties loadFileProperties(String filename) throws ExceptionHandler {
+		Properties props = new Properties();
+		try {
+			// Load the data into the file input stream
+			props.load(new FileInputStream(filename));
+		} catch (FileNotFoundException e) {
+			throw new ExceptionHandler("DBConfig Error: File not found\n"+e.getClass()+" - "+e.getMessage());
+		} catch (IOException e) {
+			throw new ExceptionHandler("DBConfig Error: IO Exception\n"+e.getClass()+" - "+e.getMessage());
+		}
+		return props;
+	}
+	/**
 	 * The function tests the connection to the database
 	 * @return Boolean 	true - is still connected
 	 * 					false - is not connected
@@ -97,6 +109,7 @@ public class ProductPartsDB {
 		} catch (SQLException e) {
 			throw new ExceptionHandler("DBIsConnected Error: Db Not Connected\n"+e.getClass()+" - "+e.getMessage());
 		}
+		
 	}
 	/**
 	 * This method checks that num is present in the database. It does this by counting the number of row associated to it.  
@@ -272,7 +285,7 @@ public class ProductPartsDB {
 	 * @return ArrayList<Product> - Returns an array list of Product objects
 	 * @throws ExceptionHandler
 	 */
-	public ArrayList<Product> printTotalProducts() throws ExceptionHandler{
+	public ArrayList<TotalProducts> printTotalProducts() throws ExceptionHandler{
 		
 		String statmentString = "select product.Prod_ID, product.Name, product.Description," +
 				" count(parts.Part_ID) as Num_Of_Parts, sum(parts.cost) as Total_Cost_of_Parts" +
@@ -281,7 +294,7 @@ public class ProductPartsDB {
 		try
 		{
 			// Declare an array list of Products 
-			myListProducts = new ArrayList<Product>();
+			myListTotalProducts = new ArrayList<TotalProducts>();
 			// Creates a Statement object which allows us to send commands to the database.
 			stmt = con.createStatement();
 			// Declare a result set passing the results of the query 
@@ -296,7 +309,7 @@ public class ProductPartsDB {
 					rs.getInt("Num_Of_Parts"),
 					rs.getDouble("Total_Cost_of_Parts")
 				);
-				myListProducts.add(curTotProducts);
+				myListTotalProducts.add(curTotProducts);
 			}
 		}
 		catch(SQLException sqle)
@@ -308,7 +321,7 @@ public class ProductPartsDB {
 			closeStmtConnections();
 		}
 		// Return the data
-		return myListProducts;
+		return myListTotalProducts;
 	}
 	/**
 	 * This method shows all available parts for a given product id
@@ -360,9 +373,9 @@ public class ProductPartsDB {
 	 */
 	public void closePreStmtConnections(){
 		// Close the connections
-	    try { if (rs != null) rs.close(); } catch (Exception e) {};
-	    try { if (preStmt != null) preStmt.close(); } catch (Exception e) {};
-	    try { if (con != null) con.close(); } catch (Exception e) {};
+	    try { rs.close(); } catch (Exception e) {};
+	    try { preStmt.close(); } catch (Exception e) {};
+	    try { con.close(); } catch (Exception e) {};
 	}
 	
 	/**
@@ -371,9 +384,9 @@ public class ProductPartsDB {
 	 */
 	private void closeStmtConnections(){
 		// Close the connections
-	    try { if (rs != null) rs.close(); } catch (Exception e) {};
-	    try { if (stmt != null) stmt.close(); } catch (Exception e) {};
-	    try { if (con != null) con.close(); } catch (Exception e) {};
+	    try { rs.close(); } catch (Exception e) {};
+	    try { stmt.close(); } catch (Exception e) {};
+	    try { con.close(); } catch (Exception e) {};
 	}
 	/**
 	 * this method sums up the cost of parts for of a chosen product id
@@ -465,7 +478,7 @@ public class ProductPartsDB {
 		}
 		catch (SQLException sqle)
 		{
-			throw new ExceptionHandler("Delete Part By Id Error: Database Error\n"+sqle.getClass()+" - "+sqle.getMessage());
+			throw new ExceptionHandler("Delete Product By Id Error: Database Error\n"+sqle.getClass()+" - "+sqle.getMessage());
 		}finally {
 			// Close the connections
 			closePreStmtConnections();
@@ -497,6 +510,150 @@ public class ProductPartsDB {
 		catch (SQLException sqle)
 		{
 			throw new ExceptionHandler("Check Is Table Empty Error: Database Error\n"+sqle.getClass()+" - "+sqle.getMessage());
+		}
+	}
+	/**
+	 * This method update a product based on a product object.
+	 * The values that are as marked as null will not be changed.
+	 * @param updatingProduct - Product Object to be changed. 
+	 * 							Null noting no change of product attribute.
+	 * @return 1 or 0 - 1 database changed, 0 database not changed 
+	 * @throws ExceptionHandler
+	 */
+	public int updateProduct(Product updatingProduct) throws ExceptionHandler{
+		
+		try
+		{	//verify the chosen data to be changed
+			if(updatingProduct.getName() != null && updatingProduct.getDescription() == null ){
+				//Set up the select statement to be used
+				preStmt = con.prepareStatement("UPDATE Product SET Name = ? WHERE Prod_ID = ?");
+				preStmt.setString(1,updatingProduct.getName());
+				preStmt.setInt(2,updatingProduct.getProdid());
+			}else if(updatingProduct.getDescription() != null && updatingProduct.getName() == null ){
+				//Set up the select statement to be used
+				preStmt = con.prepareStatement("UPDATE Product SET Description = ? WHERE Prod_ID = ?");
+				preStmt.setString(1,updatingProduct.getDescription());
+				preStmt.setInt(2,updatingProduct.getProdid());
+			}else{	
+				// If this was an else branch the data could be set to null if both name
+				// and description are null. This is why the further else if.
+				//Set up the select statement to be used
+				preStmt = con.prepareStatement("UPDATE Product SET Name = ?, Description = ? WHERE Prod_ID = ?");
+				preStmt.setString(1,updatingProduct.getName());
+				preStmt.setString(2,updatingProduct.getDescription());
+				preStmt.setInt(3,updatingProduct.getProdid());
+			}
+			// Declare a result set passing the results of the query
+			return preStmt.executeUpdate();			
+		}
+		catch (SQLException sqle)
+		{
+			throw new ExceptionHandler("Update Product Error: Database Error\n"+sqle.getClass()+" - "+sqle.getMessage());
+		}
+		catch (NullPointerException npx)
+		{
+			throw new ExceptionHandler("Update Product Error: Database Error\n"+npx.getClass()+" - "+npx.getMessage());
+		}
+		finally {
+			// Close the connections
+			closePreStmtConnections();
+		}
+	}
+	/**
+	 * This method update a part based on a part object.
+	 * The values that are as marked as null will not be changed this includes the 'Cost' attribute set to -1.
+	 * @param updatingProduct - Part Object to be changed. 
+	 * 							Null noting no change of part attribute.
+	 * 							-1 noting no change to the 'Cost' attribute.
+	 * 							if 'Cost' is set to '(Double) null' a null point exception will be thrown.
+	 * @return 1 or 0 - 1 database changed, 0 database not changed 
+	 * @throws ExceptionHandler
+	 */
+	public int updatePart(Part updatingPart) throws ExceptionHandler{
+		try
+		{	//verify the chosen data to be changed
+			if(updatingPart.getName() != null && updatingPart.getDescription() == null && updatingPart.getCost() == -1){
+				//Set up the select statement to be used
+				preStmt = con.prepareStatement("UPDATE Parts SET Name = ? WHERE Part_ID = ?");
+				preStmt.setString(1,updatingPart.getName());
+				preStmt.setInt(2,updatingPart.getPartid());
+			}else if(updatingPart.getName() == null && updatingPart.getDescription() != null && updatingPart.getCost() == -1){
+				//Set up the select statement to be used
+				preStmt = con.prepareStatement("UPDATE Parts SET Description = ? WHERE Part_ID = ?");
+				preStmt.setString(1,updatingPart.getDescription());
+				preStmt.setInt(2,updatingPart.getPartid());
+			}else if(updatingPart.getName() == null && updatingPart.getDescription() == null && updatingPart.getCost() != -1){
+				//Set up the select statement to be used
+				preStmt = con.prepareStatement("UPDATE Parts SET Cost = ? WHERE Part_ID = ?");
+				preStmt.setDouble(1,updatingPart.getCost());
+				preStmt.setInt(2,updatingPart.getPartid());
+			}else if(updatingPart.getName() != null && updatingPart.getDescription() != null && updatingPart.getCost() == -1){
+				//Set up the select statement to be used
+				preStmt = con.prepareStatement("UPDATE Parts SET Name = ?, Description = ? WHERE Part_ID = ?");
+				preStmt.setString(1,updatingPart.getName());
+				preStmt.setString(2,updatingPart.getDescription());
+				preStmt.setInt(3,updatingPart.getPartid());
+			}else if(updatingPart.getName() == null && updatingPart.getDescription() != null && updatingPart.getCost() != -1){
+				//Set up the select statement to be used
+				preStmt = con.prepareStatement("UPDATE Parts SET Description = ?, Cost = ? WHERE Part_ID = ?");
+				preStmt.setString(1,updatingPart.getDescription());
+				preStmt.setDouble(2,updatingPart.getCost());
+				preStmt.setInt(3,updatingPart.getPartid());
+			}else if(updatingPart.getName() != null && updatingPart.getDescription() == null && updatingPart.getCost() != -1){
+				//Set up the select statement to be used
+				preStmt = con.prepareStatement("UPDATE Parts SET Name= ?, Cost= ? WHERE Part_ID = ?");
+				preStmt.setString(1,updatingPart.getName());
+				preStmt.setDouble(2,updatingPart.getCost());
+				preStmt.setInt(3,updatingPart.getPartid());
+			}else if(updatingPart.getName() != null && updatingPart.getDescription() != null && updatingPart.getCost() != -1){
+				//Set up the select statement to be used
+				preStmt = con.prepareStatement("UPDATE Parts SET Name= ?,Description = ?, Cost= ? WHERE Part_ID = ?");
+				preStmt.setString(1,updatingPart.getName());
+				preStmt.setString(2,updatingPart.getDescription());
+				preStmt.setDouble(3,updatingPart.getCost());
+				preStmt.setInt(4,updatingPart.getPartid());
+			}
+			 
+			// Declare a result set passing the results of the query
+			return preStmt.executeUpdate();			
+		}
+		catch (SQLException sqle)
+		{
+			throw new ExceptionHandler("Update Parts Error: Database Error\n"+sqle.getClass()+" - "+sqle.getMessage());
+		}
+		catch (NullPointerException npx)
+		{
+			throw new ExceptionHandler("Update Parts Error: Database Error\n"+npx.getClass()+" - "+npx.getMessage());
+		}
+		finally {
+			// Close the connections
+			closePreStmtConnections();
+		}
+	}
+	/**
+	 * This method changes the association of a part to a product if the product is in the table.
+	 * @param partid - Part id of the part to change the association of. 
+	 * @param prodid - Product id of the product to be associated to.
+	 * @return 1 or 0 - 1 database changed, 0 database not changed 
+	 * @throws ExceptionHandler
+	 */
+	public int changePartAssociation(int partid, int prodid) throws ExceptionHandler{
+		try
+		{	//Set up the select statement to be used
+			preStmt = con.prepareStatement("UPDATE Parts SET Prod_ID = ? WHERE Part_ID = ?");
+			preStmt.setInt(1,prodid);
+			preStmt.setInt(2,partid);
+						
+			// Declare a result set passing the results of the query
+			return preStmt.executeUpdate();			
+		}
+		catch (SQLException sqle)
+		{
+			throw new ExceptionHandler("Change Part Association Error: Database Error\n"+sqle.getClass()+" - "+sqle.getMessage());
+		}
+		finally {
+			// Close the connections
+			closePreStmtConnections();
 		}
 	}
 }

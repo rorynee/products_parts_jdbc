@@ -18,6 +18,7 @@ public class TestInsertPart {
 	public void setUp() throws Exception {
 		testObject = new ProductPartsDB();
 		testObject.insertProduct("ASUS","X501U-XX039H 15.6 Laptop - White");
+		// previous object closed, Need to instantiate a new object
 		testObject = new ProductPartsDB();
 	}
 	/**
