@@ -62,7 +62,7 @@ To run the tests please execute the TestRunner class in the test folder.
 The diagram below shows the test results on the left and the code coverage results on the right
   
 ![alt text][test]
-[test]: https://raw.github.com/rorynee/products_parts_jdbc/master/extras/testCodeCoverage.png "Test Results"
+[test]: https://raw.github.com/rorynee/products_parts_jdbc/master/extras/testCodeCoverage.PNG "Test Results"
 
 ## Extra Resources
 Located in the Extra folder is 
