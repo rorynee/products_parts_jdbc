@@ -14,6 +14,7 @@ An ER diagram has been developed to store information about generic products and
     5. Given a product, list all of its parts and also its total cost.
 * c - A custom error handler should be used
 * d - User a code coverage tool
+* e - Develop a simple console app to call the above commands and that would take input from a user
 
 ## Technologies Used
 * Test Driven Development

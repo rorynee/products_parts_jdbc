@@ -11,7 +11,7 @@ public class Part {
 	private int prodid;
 	private String name;
 	private String description;
-	private double cost;
+	private double cost = -1;
 	
 	/**
 	 * Default constructor

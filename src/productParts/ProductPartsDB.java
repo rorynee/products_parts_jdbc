@@ -28,8 +28,8 @@ public class ProductPartsDB {
 	
 	/** Choose between Production or test file names **/
 	
-	//private static String configFileName = "dbconfig.properties";
-	private static String configFileName = "dbconfigTest.properties";
+	private static String configFileName = "dbconfig.properties";
+	//private static String configFileName = "dbconfigTest.properties";
 	
 	/****/
 	
@@ -61,17 +61,17 @@ public class ProductPartsDB {
 		{
 			/*  SQL Database Configurations - change configFileName to production filename */
 			// dynamically loads the driver
-//			Class.forName(props.getProperty("jdbcdriver"));
+			Class.forName(props.getProperty("jdbcdriver"));
 			// connect to the database using the URL, name & password
-//			con = DriverManager.getConnection(props.getProperty("url"), props.getProperty("username"), props.getProperty("password"));
+			con = DriverManager.getConnection(props.getProperty("url"), props.getProperty("username"), props.getProperty("password"));
 			/*   ---------------   */
 			
 			
 			/*  H2 Database Configurations  */
 			// dynamically loads the driver
-			Class.forName(props.getProperty("jdbcdriverTest"));
+	//		Class.forName(props.getProperty("jdbcdriverTest"));
 			// connect to the database using the URL, name & password
-			con = DriverManager.getConnection(props.getProperty("urlTest"));
+	//		con = DriverManager.getConnection(props.getProperty("urlTest"));
 			/*   ---------------   */
 		}
 		catch(Exception e)
@@ -122,9 +122,14 @@ public class ProductPartsDB {
 	public boolean validId(String tableName, int idnum) throws ExceptionHandler {
 		
 		try
-		{	//counting the number of row associated with 'idnum' using a prepared statment
+		{	
+			if(tableName.equalsIgnoreCase("product")){
+			//counting the number of row associated with 'idnum' using a prepared statement
 			preStmt = con.prepareStatement("select count(*) as Total from "+tableName+" where Prod_ID = ?");
-			
+			}else{
+				//counting the number of row associated with 'idnum' using a prepared statement
+				preStmt = con.prepareStatement("select count(*) as Total from "+tableName+" where Part_ID = ?");
+			}
 			preStmt.setInt(1,idnum);
 			// Declare a result set passing the results of the query
 			rs = preStmt.executeQuery();
